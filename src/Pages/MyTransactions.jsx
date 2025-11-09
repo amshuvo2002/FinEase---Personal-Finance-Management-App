@@ -9,10 +9,12 @@ const MyTransactions = () => {
   const [transactions, setTransactions] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch transactions for logged-in user
+  // ✅ Fetch Transactions
   const fetchTransactions = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/transactions?email=${user.email}`);
+      const res = await fetch(
+        `http://localhost:3000/transactions?email=${user.email}`
+      );
       const data = await res.json();
       setTransactions(data);
     } catch (error) {
@@ -26,7 +28,7 @@ const MyTransactions = () => {
     }
   }, [user]);
 
-  // Delete transaction
+  // ✅ Delete Transaction (Instant UI Update)
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -39,10 +41,22 @@ const MyTransactions = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await fetch(`http://localhost:5000/transactions/${id}`, { method: "DELETE" });
-          if (res.ok) {
-            setTransactions(transactions.filter((t) => t._id !== id));
+          const res = await fetch(
+            `http://localhost:3000/transactions/${id}`,
+            {
+              method: "DELETE",
+            }
+          );
+
+          const data = await res.json();
+
+          if (data.deletedCount > 0) {
+            // ✅ Remove from UI instantly
+            setTransactions((prev) => prev.filter((t) => t._id !== id));
+
             Swal.fire("Deleted!", "Transaction has been deleted.", "success");
+          } else {
+            Swal.fire("Error!", "Delete failed.", "error");
           }
         } catch (error) {
           Swal.fire("Error!", "Failed to delete transaction.", "error");
@@ -51,12 +65,12 @@ const MyTransactions = () => {
     });
   };
 
-  // Update transaction → redirect to Update page
+  // ✅ Update transaction → navigate
   const handleUpdate = (id) => {
     navigate(`/update-transaction/${id}`);
   };
 
-  // View details
+  // ✅ View Details
   const handleView = (id) => {
     navigate(`/transaction-details/${id}`);
   };
@@ -64,7 +78,9 @@ const MyTransactions = () => {
   return (
     <PrivateRoute>
       <div className="min-h-screen p-6 bg-gray-300">
-        <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">My Transactions 📝</h2>
+        <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">
+          My Transactions 📝
+        </h2>
 
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white shadow-lg rounded-lg">
@@ -77,31 +93,42 @@ const MyTransactions = () => {
                 <th className="py-2 px-4">Actions</th>
               </tr>
             </thead>
+
             <tbody>
               {transactions.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="text-center py-4">No transactions found.</td>
+                  <td colSpan="5" className="text-center py-4">
+                    No transactions found.
+                  </td>
                 </tr>
               ) : (
                 transactions.map((t) => (
                   <tr key={t._id} className="border-b">
-                    <td className="py-2 px-4">{t.type}</td>
-                    <td className="py-2 px-4">{t.category}</td>
-                    <td className="py-2 px-4">${t.amount}</td>
-                    <td className="py-2 px-4">{new Date(t.date).toLocaleDateString()}</td>
-                    <td className="py-2 px-4 flex gap-2">
+                    <td className="py-2 px-4 text-center">{t.type}</td>
+                    <td className="py-2 px-4 text-center">{t.category}</td>
+                    <td className="py-2 px-4 text-center">${t.amount}</td>
+                    <td className="py-2 px-4 text-center">
+                      {new Date(t.date).toLocaleDateString()}
+                    </td>
+
+                    <td className="py-2 px-4 flex justify-center gap-2">
+                      {/* ✅ Update */}
                       <button
                         onClick={() => handleUpdate(t._id)}
                         className="bg-yellow-400 hover:bg-yellow-500 text-white py-1 px-2 rounded-lg"
                       >
                         Update
                       </button>
+
+                      {/* ✅ Delete */}
                       <button
                         onClick={() => handleDelete(t._id)}
                         className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-lg"
                       >
                         Delete
                       </button>
+
+                      {/* ✅ View */}
                       <button
                         onClick={() => handleView(t._id)}
                         className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-lg"

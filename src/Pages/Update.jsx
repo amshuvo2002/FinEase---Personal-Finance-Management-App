@@ -1,9 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
 import { Authcontext } from "../Provider/Authprovider";
 import PrivateRoute from "../PrivetRoute/PrivateRoute";
 import Swal from "sweetalert2";
 
-const AddTransaction = () => {
+const UpdateTransaction = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const { user } = useContext(Authcontext);
 
   const [type, setType] = useState("Income");
@@ -11,8 +14,30 @@ const AddTransaction = () => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const handleSubmit = async (e) => {
+  // ✅ Fetch existing transaction
+  useEffect(() => {
+    const fetchTransaction = async () => {
+      try {
+        const res = await fetch(`http://localhost:3000/transactions/${id}`);
+        const data = await res.json();
+        setType(data.type);
+        setCategory(data.category);
+        setAmount(data.amount);
+        setDescription(data.description || "");
+        setDate(data.date.split("T")[0]); // format for input type="date"
+      } catch (error) {
+        console.error("Error fetching transaction:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTransaction();
+  }, [id]);
+
+  // ✅ Handle update
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
     if (!category || !amount || !date) {
@@ -24,7 +49,7 @@ const AddTransaction = () => {
       return;
     }
 
-    const transactionData = {
+    const updatedTransaction = {
       type,
       category,
       amount: parseFloat(amount),
@@ -35,26 +60,27 @@ const AddTransaction = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/transactions", {
-        method: "POST",
+      const res = await fetch(`http://localhost:3000/transactions/${id}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(transactionData),
+        body: JSON.stringify(updatedTransaction),
       });
 
-      if (response.ok) {
+      const data = await res.json();
+
+      if (data.modifiedCount > 0 || data.matchedCount > 0) {
         Swal.fire({
           icon: "success",
-          title: "Transaction Added",
-          text: "Your transaction has been saved successfully!",
+          title: "Transaction Updated",
+          text: "Your transaction has been updated successfully!",
         });
-        // Clear form
-        setCategory("");
-        setAmount("");
-        setDescription("");
-        setDate("");
-        setType("Income");
+        navigate(`/My-Transaction`); // redirect to details page
       } else {
-        throw new Error("Failed to save transaction");
+        Swal.fire({
+          icon: "info",
+          title: "No changes made",
+          text: "You didn't change any value",
+        });
       }
     } catch (error) {
       Swal.fire({
@@ -65,15 +91,25 @@ const AddTransaction = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <PrivateRoute>
+        <div className="min-h-screen flex justify-center items-center text-xl font-semibold">
+          Loading transaction...
+        </div>
+      </PrivateRoute>
+    );
+  }
+
   return (
     <PrivateRoute>
-      <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
+      <div className="min-h-screen p-6 bg-gray-300 flex justify-center">
         <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg">
-          <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">
-            Add Transaction 💰
+          <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">
+            Update Transaction ✏️
           </h2>
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className="space-y-4" onSubmit={handleUpdate}>
             {/* Type */}
             <div>
               <label className="block font-semibold mb-1">Type</label>
@@ -135,33 +171,11 @@ const AddTransaction = () => {
               />
             </div>
 
-            {/* User Email (Read-only) */}
-            <div>
-              <label className="block font-semibold mb-1">User Email</label>
-              <input
-                type="email"
-                className="w-full px-4 py-2 border rounded-lg bg-gray-100"
-                value={user?.email}
-                disabled
-              />
-            </div>
-
-            {/* User Name (Read-only) */}
-            <div>
-              <label className="block font-semibold mb-1">User Name</label>
-              <input
-                type="text"
-                className="w-full px-4 py-2 border rounded-lg bg-gray-100"
-                value={user?.displayName}
-                disabled
-              />
-            </div>
-
             <button
               type="submit"
-              className="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-700"
+              className="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600"
             >
-              Add Transaction
+              Update Transaction
             </button>
           </form>
         </div>
@@ -170,4 +184,4 @@ const AddTransaction = () => {
   );
 };
 
-export default AddTransaction;
+export default UpdateTransaction;

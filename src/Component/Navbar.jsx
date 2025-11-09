@@ -63,11 +63,11 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="gap-5 menu-horizontal px-1">
-            <li><NavLink to="/" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Home</NavLink></li>
-            <li><NavLink to="Add-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Add Transaction</NavLink></li>
-            <li><NavLink to="My-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Transactions</NavLink></li>
-            <li><NavLink to="Reports" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Reports</NavLink></li>
-             <li><NavLink to="My-Profile" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Profile</NavLink></li>
+            <li class="text-black hover:text-gray-700" ><NavLink to="/" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Home</NavLink></li>
+            <li class="text-black hover:text-gray-700"><NavLink to="Add-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Add Transaction</NavLink></li>
+            <li class="text-black hover:text-gray-700" ><NavLink to="My-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Transactions</NavLink></li>
+            <li class="text-black hover:text-gray-700" ><NavLink to="Reports" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Reports</NavLink></li>
+             <li class="text-black hover:text-gray-700" ><NavLink to="My-Profile" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Profile</NavLink></li>
           </ul>
         </div>
 
