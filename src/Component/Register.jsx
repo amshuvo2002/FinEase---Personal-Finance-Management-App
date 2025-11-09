@@ -1,100 +1,156 @@
-import React from 'react';
+import React, { useState, useContext } from "react";
 import { Link } from "react-router";
+import { Authcontext } from "../Provider/Authprovider";
+import { auth, googleProvider } from "../Firebase/firebase.config";
+import { createUserWithEmailAndPassword, updateProfile, signInWithPopup } from "firebase/auth";
+import { FcGoogle } from "react-icons/fc";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const Register = () => {
-    return (
-        <div className="min-h-screen flex items-center justify-center">
-            <div className="w-full max-w-sm p-6 rounded-lg shadow-lg border">
-                
-                <h2 className="text-2xl font-bold text-center mb-6">
-                    Create an Account
-                </h2>
+  const { setuser } = useContext(Authcontext);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // toggle
 
-                <form className="space-y-4">
+  const validatePassword = (password) => {
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasMinLength = password.length >= 6;
+    return hasUppercase && hasLowercase && hasMinLength;
+  };
 
-                    <div>
-                        <label className="block mb-1 font-medium">Name</label>
-                        <input
-                            type="text"
-                            className="border w-full p-2 rounded"
-                            placeholder="Enter your name"
-                        />
-                    </div>
+  const handleRegister = (e) => {
+    e.preventDefault();
 
-                    <div>
-                        <label className="block mb-1 font-medium">Email</label>
-                        <input
-                            type="email"
-                            className="border w-full p-2 rounded"
-                            placeholder="Enter your email"
-                        />
-                    </div>
+    if (!validatePassword(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Password",
+        text: "Password must be at least 6 characters long and include both uppercase and lowercase letters.",
+      });
+      return;
+    }
 
-                    <div>
-                        <label className="block mb-1 font-medium">Photo URL</label>
-                        <input
-                            type="text"
-                            className="border w-full p-2 rounded"
-                            placeholder="Your profile photo link"
-                        />
-                    </div>
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        return updateProfile(userCredential.user, {
+          displayName: name,
+          photoURL: photoURL || "",
+        }).then(() => userCredential.user);
+      })
+      .then((user) => {
+        setuser(user);
+        Swal.fire({
+          icon: "success",
+          title: "Registration Successful",
+          text: `Welcome ${user.displayName}`,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Registration Failed",
+          text: error.message,
+        });
+      });
+  };
 
-                    <div>
-                        <label className="block mb-1 font-medium">Password</label>
-                        <input
-                            type="password"
-                            className="border w-full p-2 rounded"
-                            placeholder="Create a password"
-                        />
-                    </div>
+  const handleGoogleRegister = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        setuser(result.user);
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: `Welcome ${result.user.displayName}`,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Google login failed",
+          text: error.message,
+        });
+      });
+  };
 
-                    <button className="w-full bg-blue-500 text-white p-2 rounded font-medium">
-                        Register
-                    </button>
-                </form>
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
+      <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
+        <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">Register 📝</h2>
+        <form className="space-y-4" onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Enter Name"
+            className="w-full px-4 py-2 border rounded-lg"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Enter Email"
+            className="w-full px-4 py-2 border rounded-lg"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Enter Photo URL"
+            className="w-full px-4 py-2 border rounded-lg"
+            value={photoURL}
+            onChange={(e) => setPhotoURL(e.target.value)}
+          />
 
-                {/* Login Page Link */}
-                <p className="text-center mt-4">
-                    Already have an account? 
-                    <Link to="/login" className="text-blue-600 font-medium ml-1">
-                        Login
-                    </Link>
-                </p>
+          {/* Password with toggle */}
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter Password"
+              className="w-full px-4 py-2 border rounded-lg"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span
+              className="absolute right-3 top-2.5 cursor-pointer text-gray-600"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <AiFillEye size={20} /> : <AiFillEyeInvisible size={20} />}
+            </span>
+          </div>
 
-                {/* Google Login Button */}
-                  <button className="btn w-full mt-5 bg-white text-black border-[#e5e5e5]">
-          <svg
-            aria-label="Google logo"
-            width="16"
-            height="16"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
+          <button
+            type="submit"
+            className="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-700"
           >
-            <g>
-              <path d="m0 0H512V512H0" fill="#fff"></path>
-              <path
-                fill="#34a853"
-                d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-              ></path>
-              <path
-                fill="#4285f4"
-                d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-              ></path>
-              <path
-                fill="#fbbc02"
-                d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-              ></path>
-              <path
-                fill="#ea4335"
-                d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-              ></path>
-            </g>
-          </svg>
-          Login with Google
+            Register
+          </button>
+        </form>
+
+        <button
+          onClick={handleGoogleRegister}
+          className="btn w-full mt-5 bg-white hover:bg-gray-300 text-black border-black flex items-center justify-center gap-2"
+        >
+          <FcGoogle size={24} />
+          Google Login
         </button>
-            </div>
-        </div>
-    );
+
+        <p className="text-center mt-4">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-600 font-semibold">
+            Login
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default Register;

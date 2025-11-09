@@ -11,6 +11,7 @@ import Error from './Component/Error.jsx';
 import AddTransaction from './Pages/AddTransaction.jsx';
 import MyTransactions from './Pages/MyTransactions.jsx';
 import Reports from './Pages/Reports.jsx';
+import Authprovider from './Provider/Authprovider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Authprovider >
+      <RouterProvider router={router} />
+    </Authprovider>
   </StrictMode>,
 )

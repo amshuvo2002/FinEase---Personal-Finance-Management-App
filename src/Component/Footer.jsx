@@ -5,13 +5,13 @@ import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-t from-gray-500 to-gray-700 text-white py-10 mt-10">
+    <footer className="bg-gradient-to-t from-gray-500 to-gray-700 text-white py-10">
       <div className="container mx-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* ✅ Logo + Website Name */}
         <div className="flex flex-col items-center md:items-start">
           <img src={Logo} className="w-16 h-16 rounded-full mb-3" alt="Logo" />
           <h2 className="text-2xl font-bold">
-            Fin<span className="text-blue-500">Ease</span>
+            Fin<span className="text-gray-400">Ease</span>
           </h2>
           <p className="text-gray-300 mt-2">Personal Finance Manager</p>
         </div>
