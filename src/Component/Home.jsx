@@ -4,7 +4,7 @@ const Home = () => {
   
 
   return (
-    <div className="min-h-screen bg-gray-200">
+    <div className="min-h-screen p-5 bg-gray-300">
       {/* Banner Section */}
       <section className="bg-cyan-600 text-white py-20 text-center">
         <h1 className="text-5xl font-bold mb-4">Achieve Your Financial Freedom 💰</h1>

@@ -1,43 +1,40 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { Authcontext } from "../Provider/Authprovider";
 import { auth, googleProvider } from "../Firebase/firebase.config";
-import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { setuser } = useContext(Authcontext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // Email/password login
+  // Redirect path from PrivateRoute
+  const from = location.state?.from || "/";
+
+  // ✅ Email + Password Login
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Simple password validation (same as register)
-    if (password.length < 6) {
-      Swal.fire({
-        icon: "error",
-        title: "Invalid Password",
-        text: "Password must be at least 6 characters long.",
-      });
-      return;
-    }
-
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setuser(userCredential.user);
+      .then((result) => {
+        setuser(result.user);
+
         Swal.fire({
           icon: "success",
           title: "Login Successful",
-          text: `Welcome ${userCredential.user.displayName || "User"}`,
+          text: `Welcome ${result.user.displayName || ""}`,
+          timer: 1500,
+          showConfirmButton: false,
         });
+
+        navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.error(error);
         Swal.fire({
           icon: "error",
           title: "Login Failed",
@@ -46,29 +43,31 @@ const Login = () => {
       });
   };
 
-  // Google login
+  // ✅ Google Login
   const handleGoogleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setuser(result.user);
+
         Swal.fire({
           icon: "success",
-          title: "Login Successful",
-          text: `Welcome ${result.user.displayName}`,
+          title: "Google Login Successful!",
+          timer: 1500,
+          showConfirmButton: false,
         });
+
+        navigate(from, { replace: true });
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
         Swal.fire({
           icon: "error",
-          title: "Google login failed",
-          text: error.message,
+          title: "Google Login Failed",
         });
       });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
+    <div className="min-h-screen text-black flex items-center justify-center bg-gray-300 p-4">
       <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
         <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">Login 📝</h2>
 
@@ -82,23 +81,14 @@ const Login = () => {
             required
           />
 
-          {/* Password with toggle */}
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter Password"
-              className="w-full px-4 py-2 border rounded-lg"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <span
-              className="absolute right-3 top-2.5 cursor-pointer text-gray-600"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <AiFillEye size={20} /> : <AiFillEyeInvisible size={20} />}
-            </span>
-          </div>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            className="w-full px-4 py-2 border rounded-lg"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
           <button
             type="submit"
@@ -112,8 +102,7 @@ const Login = () => {
           onClick={handleGoogleLogin}
           className="btn w-full mt-5 bg-white hover:bg-gray-300 text-black border-black flex items-center justify-center gap-2"
         >
-          <FcGoogle size={24} />
-          Google Login
+          <FcGoogle /> Google Login
         </button>
 
         <p className="text-center mt-4">

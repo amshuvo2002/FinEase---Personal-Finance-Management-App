@@ -1,23 +1,30 @@
 import React from "react";
 import { Link } from "react-router";
 
-const Error = () => {
+const ErrorPage = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6 text-center">
-      <h1 className="text-4xl font-bold mb-4 text-red-600">Oops! Page Not Found</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
+      {/* Error Code */}
+      <h1 className="text-9xl font-extrabold text-red-500 mb-4">404</h1>
 
-     <img src="" alt="" />
+      {/* Error Message */}
+      <h2 className="text-3xl font-bold text-gray-700 mb-2">
+        Oops! Page Not Found👻
+      </h2>
 
-      <p className="mt-6 text-lg text-gray-700">The page you are looking for does not exist.</p>
+      <p className="text-gray-500 mb-6 text-center">
+        The page you are looking for might have been removed, had its name changed, 
+        or is temporarily unavailable.
+      </p>
 
-      <Link
-        to="/"
-        className="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition"
-      >
-        Go Back Home
+      {/* Back to Home Button */}
+      <Link to="/">
+        <button className="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+          Go Back Home
+        </button>
       </Link>
     </div>
   );
 };
 
-export default Error;
+export default ErrorPage;

@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar bg-gradient-to-br from-gray-300 to-gray-500 shadow-sm">
+      <div className="navbar bg-gradient-to-br text-black from-gray-300 to-gray-500 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,6 +49,7 @@ const Navbar = () => {
               <li><NavLink to="Add-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Add Transaction</NavLink></li>
               <li><NavLink to="My-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Transactions</NavLink></li>
               <li><NavLink to="Reports" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Reports</NavLink></li>
+              <li><NavLink to="My-Profile" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Profile</NavLink></li>
             </ul>
           </div>
 
@@ -66,6 +67,7 @@ const Navbar = () => {
             <li><NavLink to="Add-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Add Transaction</NavLink></li>
             <li><NavLink to="My-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Transactions</NavLink></li>
             <li><NavLink to="Reports" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Reports</NavLink></li>
+             <li><NavLink to="My-Profile" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Profile</NavLink></li>
           </ul>
         </div>
 
@@ -85,7 +87,7 @@ const Navbar = () => {
               />
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-12 w-48 bg-white shadow-lg rounded-lg p-4 text-left z-10">
+                <div className="absolute right-0 mt-12 w-48 text-black bg-white shadow-lg rounded-lg p-4 text-left z-10">
                   <p className="font-semibold">{user.displayName || "User"}</p>
                   <p className="text-sm text-gray-500">{user.email}</p>
 
@@ -100,7 +102,7 @@ const Navbar = () => {
             </div>
           ) : (
             <NavLink to="login">
-              <button className="btn bg-gray-300 flex items-center gap-2">
+              <button className="btn text-black bg-gray-300 flex items-center gap-2">
                 <FiLogIn size={20} /> Login
               </button>
             </NavLink>

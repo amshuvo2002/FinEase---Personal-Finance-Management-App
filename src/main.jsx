@@ -12,6 +12,8 @@ import AddTransaction from './Pages/AddTransaction.jsx';
 import MyTransactions from './Pages/MyTransactions.jsx';
 import Reports from './Pages/Reports.jsx';
 import Authprovider from './Provider/Authprovider.jsx';
+import PrivateRoute from './PrivetRoute/PrivateRoute.jsx';
+import MyProfile from './Component/MyProfile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,15 +35,19 @@ const router = createBrowserRouter([
       },
         {
         path: 'Add-Transaction',
-        element: <AddTransaction></AddTransaction>
+        element: <PrivateRoute><AddTransaction></AddTransaction></PrivateRoute>
       },
       {
         path: 'My-Transaction',
-        element: <MyTransactions></MyTransactions>
+        element: <PrivateRoute><MyTransactions></MyTransactions></PrivateRoute>
       },
       {
         path: 'Reports',
-        element: <Reports></Reports>
+        element: <PrivateRoute><Reports></Reports></PrivateRoute>
+      },
+      {
+        path: 'My-Profile',
+        element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>
       },
 
     ]
