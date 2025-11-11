@@ -68,6 +68,7 @@ const AddTransaction = () => {
   return (
     <PrivateRoute>
       <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
+           <title>FinEase-Add Transaction</title>
         <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg">
           <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">
             Add Transaction 💰

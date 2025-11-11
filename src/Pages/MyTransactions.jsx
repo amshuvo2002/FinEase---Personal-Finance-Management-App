@@ -78,6 +78,7 @@ const MyTransactions = () => {
   return (
     <PrivateRoute>
       <div className="min-h-screen p-6 bg-gray-300">
+        <title>FinEase-My Transaction</title>
         <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">
           My Transactions 📝
         </h2>

@@ -48,6 +48,7 @@ const DetailsPage = () => {
   return (
     <PrivateRoute>
       <div className="min-h-screen p-6 bg-gray-200 flex justify-center">
+           <title>FinEase-Transaction Details</title>
         <div className="bg-white p-8 rounded-xl shadow-lg w-2/3 mx-auto">
           <h2 className="text-3xl font-bold text-gray-700 mb-6 text-center">
             Transaction Details

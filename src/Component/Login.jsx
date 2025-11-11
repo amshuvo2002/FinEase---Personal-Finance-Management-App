@@ -68,6 +68,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen text-black flex items-center justify-center bg-gray-300 p-4">
+         <title>FinEase-Login</title>
       <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
         <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">Login 📝</h2>
 

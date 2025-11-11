@@ -3,7 +3,9 @@ import { Link } from "react-router";
 
 const ErrorPage = () => {
   return (
+   
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
+       <title>FinEase-Error</title>
       {/* Error Code */}
       <h1 className="text-9xl font-extrabold text-red-500 mb-4">404</h1>
 
