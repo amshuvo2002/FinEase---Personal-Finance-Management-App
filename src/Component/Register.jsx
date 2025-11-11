@@ -13,7 +13,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [photoURL, setPhotoURL] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // toggle
+  const [showPassword, setShowPassword] = useState(false);
 
   const validatePassword = (password) => {
     const hasUppercase = /[A-Z]/.test(password);
@@ -109,7 +109,7 @@ const Register = () => {
             onChange={(e) => setPhotoURL(e.target.value)}
           />
 
-          {/* Password with toggle */}
+          
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}

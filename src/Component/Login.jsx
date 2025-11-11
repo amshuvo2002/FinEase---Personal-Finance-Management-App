@@ -13,10 +13,9 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Redirect path from PrivateRoute
   const from = location.state?.from || "/";
 
-  // ✅ Email + Password Login
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -43,7 +42,6 @@ const Login = () => {
       });
   };
 
-  // ✅ Google Login
   const handleGoogleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {

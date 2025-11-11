@@ -13,7 +13,7 @@ const MyProfile = () => {
   const handleUpdate = () => {
     updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photoURL
+      photoURL: photoURL,
     })
       .then(() => {
         setuser({ ...user, displayName: name, photoURL: photoURL });
@@ -35,17 +35,13 @@ const MyProfile = () => {
   return (
     <PrivateRoute>
       <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
-           <title>FinEase-My Profile</title>
+        <title>FinEase-My Profile</title>
         <div className="bg-white text-black p-8 rounded-xl shadow-xl w-full max-w-md">
-          {/* Title */}
           <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">
             My Profile 📝
           </h2>
 
-          {/* Profile Form */}
           <div className="space-y-4">
-
-            {/* Photo Preview */}
             {photoURL && (
               <div className="flex justify-center">
                 <img
@@ -55,7 +51,7 @@ const MyProfile = () => {
                 />
               </div>
             )}
-            {/* Name */}
+
             <div>
               <label className="block font-semibold mb-1">Name</label>
               <input
@@ -66,7 +62,6 @@ const MyProfile = () => {
               />
             </div>
 
-            {/* Photo URL */}
             <div>
               <label className="block font-semibold mb-1">Photo URL</label>
               <input
@@ -77,7 +72,6 @@ const MyProfile = () => {
               />
             </div>
 
-            {/* Email */}
             <div>
               <label className="block font-semibold mb-1">Email</label>
               <input
@@ -88,7 +82,6 @@ const MyProfile = () => {
               />
             </div>
 
-            {/* Update Button */}
             <button
               onClick={handleUpdate}
               className="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-700"

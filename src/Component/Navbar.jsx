@@ -23,7 +23,7 @@ const Navbar = () => {
     });
   };
 
-  // ✅ Close dropdown on outside click
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -53,14 +53,14 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Logo */}
+         
           <div className="flex ml-15 md:ml-0 justify-center gap-3">
             <img className="w-12 h-12 rounded-full" src={Logo} alt="" />
             <h1 className="font-bold text-4xl ">Fin<span className="text-gray-700">Ease</span></h1>
           </div>
         </div>
 
-        {/* Desktop Menu */}
+       
         <div className="navbar-center hidden lg:flex">
           <ul className="gap-5 menu-horizontal px-1">
             <li class="text-black hover:text-gray-700" ><NavLink to="/" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Home</NavLink></li>
@@ -71,7 +71,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Login / User Dropdown */}
+    
         <div className="navbar-end relative" ref={dropdownRef}>
           {user ? (
             <div className="flex items-center gap-2 relative">

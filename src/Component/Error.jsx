@@ -3,23 +3,20 @@ import { Link } from "react-router";
 
 const ErrorPage = () => {
   return (
-   
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-       <title>FinEase-Error</title>
-      {/* Error Code */}
+      <title>FinEase-Error</title>
+
       <h1 className="text-9xl font-extrabold text-red-500 mb-4">404</h1>
 
-      {/* Error Message */}
       <h2 className="text-3xl font-bold text-gray-700 mb-2">
         Oops! Page Not Found👻
       </h2>
 
       <p className="text-gray-500 mb-6 text-center">
-        The page you are looking for might have been removed, had its name changed, 
-        or is temporarily unavailable.
+        The page you are looking for might have been removed, had its name
+        changed, or is temporarily unavailable.
       </p>
 
-      {/* Back to Home Button */}
       <Link to="/">
         <button className="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
           Go Back Home
