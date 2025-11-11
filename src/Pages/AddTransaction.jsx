@@ -66,7 +66,7 @@ const AddTransaction = () => {
   };
 
   return (
-    <PrivateRoute>
+    
       <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
            <title>FinEase-Add Transaction</title>
         <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg">
@@ -167,7 +167,7 @@ const AddTransaction = () => {
           </form>
         </div>
       </div>
-    </PrivateRoute>
+   
   );
 };
 

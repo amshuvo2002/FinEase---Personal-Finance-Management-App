@@ -93,16 +93,16 @@ const UpdateTransaction = () => {
 
   if (loading) {
     return (
-      <PrivateRoute>
+      
         <div className="min-h-screen flex justify-center items-center text-xl font-semibold">
           Loading transaction...
         </div>
-      </PrivateRoute>
+      
     );
   }
 
   return (
-    <PrivateRoute>
+   
       <div className="min-h-screen p-6 bg-gray-300 flex justify-center">
          <title>FinEase - Updates</title>
         <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg">
@@ -181,7 +181,7 @@ const UpdateTransaction = () => {
           </form>
         </div>
       </div>
-    </PrivateRoute>
+    
   );
 };
 

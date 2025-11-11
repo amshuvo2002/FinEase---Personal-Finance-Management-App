@@ -86,7 +86,7 @@ const Reports = () => {
   ];
 
   return (
-    <PrivateRoute>
+   
       <div className="min-h-screen p-6 bg-gray-300">
         <title>FinEase - Reports</title>
         <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">
@@ -168,7 +168,7 @@ const Reports = () => {
           </div>
         </div>
       </div>
-    </PrivateRoute>
+   
   );
 };
 
