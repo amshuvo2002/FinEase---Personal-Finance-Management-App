@@ -76,7 +76,7 @@ const Navbar = () => {
           {user ? (
             <div className="flex items-center gap-2 relative">
               <img
-                src={user.photoURL || "https://i.ibb.co/2kMHDjv/default-avatar.png"}
+                src={user?.photoURL || "https://i.ibb.co/2kMHDjv/default-avatar.png"}
                 alt="User"
                 className="w-10 h-10 rounded-full cursor-pointer"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
