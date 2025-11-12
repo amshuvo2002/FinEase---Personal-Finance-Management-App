@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
-import PrivateRoute from "../PrivetRoute/PrivateRoute";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
@@ -13,7 +12,7 @@ const MyTransactions = () => {
   const fetchTransactions = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/transactions?email=${user.email}`
+        `https://surver-part.vercel.app/transactions?email=${user.email}`
       );
       const data = await res.json();
       setTransactions(data);
@@ -28,7 +27,6 @@ const MyTransactions = () => {
     }
   }, [user]);
 
-  // ✅ Delete Transaction (Instant UI Update)
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -42,7 +40,7 @@ const MyTransactions = () => {
       if (result.isConfirmed) {
         try {
           const res = await fetch(
-            `http://localhost:3000/transactions/${id}`,
+            `https://surver-part.vercel.app/transactions/${id}`,
             {
               method: "DELETE",
             }
@@ -51,7 +49,7 @@ const MyTransactions = () => {
           const data = await res.json();
 
           if (data.deletedCount > 0) {
-            // ✅ Remove from UI instantly
+       
             setTransactions((prev) => prev.filter((t) => t._id !== id));
 
             Swal.fire("Deleted!", "Transaction has been deleted.", "success");
@@ -65,12 +63,12 @@ const MyTransactions = () => {
     });
   };
 
-  // ✅ Update transaction → navigate
+
   const handleUpdate = (id) => {
     navigate(`/update-transaction/${id}`);
   };
 
-  // ✅ View Details
+
   const handleView = (id) => {
     navigate(`/transaction-details/${id}`);
   };
@@ -84,7 +82,7 @@ const MyTransactions = () => {
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white shadow-lg rounded-lg">
+          <table className="min-w-full  text-black bg-white shadow-lg rounded-lg">
             <thead className="bg-gray-200">
               <tr>
                 <th className="py-2 px-4">Type</th>
@@ -113,7 +111,7 @@ const MyTransactions = () => {
                     </td>
 
                     <td className="py-2 px-4 flex justify-center gap-2">
-                      {/* ✅ Update */}
+                     
                       <button
                         onClick={() => handleUpdate(t._id)}
                         className="bg-yellow-400 hover:bg-yellow-500 text-white py-1 px-2 rounded-lg"
@@ -121,7 +119,7 @@ const MyTransactions = () => {
                         Update
                       </button>
 
-                      {/* ✅ Delete */}
+                   
                       <button
                         onClick={() => handleDelete(t._id)}
                         className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-lg"
@@ -129,7 +127,6 @@ const MyTransactions = () => {
                         Delete
                       </button>
 
-                      {/* ✅ View */}
                       <button
                         onClick={() => handleView(t._id)}
                         className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded-lg"

@@ -14,7 +14,7 @@ const Home = () => {
     if (!user?.email) return;
 
     const res = await fetch(
-      `http://localhost:3000/transactions?email=${user.email}`
+      `https://surver-part.vercel.app/transactions?email=${user.email}`
     );
     const data = await res.json();
     setTransactions(data);
@@ -47,10 +47,10 @@ const Home = () => {
   return (
     <div className="min-h-screen p-5 bg-gray-300">
       <section className="bg-cyan-600 text-white py-20 text-center">
-        <h1 className="text-5xl font-bold mb-4">
+        <h1 className="md:text-5xl text-3xl font-bold mb-4">
           Achieve Your Financial Freedom 💰
         </h1>
-        <p className="text-xl">
+        <p className="text-xl px-4">
           Take control of your money and secure your future
         </p>
       </section>
@@ -62,7 +62,7 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-xl shadow text-center">
             <h3 className="text-gray-500 mb-2">Total Balance</h3>
-            <p className="text-2xl font-bold">${balance}</p>
+            <p className="text-2xl text-black font-bold">${balance}</p>
           </div>
           <div className="bg-white p-6 rounded-xl shadow text-center">
             <h3 className="text-gray-500 mb-2">Income</h3>

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
-import PrivateRoute from "../PrivetRoute/PrivateRoute";
 import {
   PieChart,
   Pie,
@@ -21,12 +20,11 @@ const Reports = () => {
   const [monthFilter, setMonthFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
 
-  // ✅ Fetch transactions from server (PORT FIXED ✅)
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/transactions?email=${user.email}`
+          `https://surver-part.vercel.app/transactions?email=${user.email}`
         );
         const data = await res.json();
         setTransactions(data);
@@ -39,7 +37,6 @@ const Reports = () => {
     if (user?.email) fetchTransactions();
   }, [user]);
 
-  // ✅ Filter by month & category
   useEffect(() => {
     let filtered = [...transactions];
 
@@ -56,7 +53,6 @@ const Reports = () => {
     setFilteredTransactions(filtered);
   }, [monthFilter, categoryFilter, transactions]);
 
-  // ✅ Pie Chart data (Category-based totals)
   const pieData = filteredTransactions.reduce((acc, t) => {
     const found = acc.find((x) => x.name === t.category);
     if (found) {
@@ -67,7 +63,6 @@ const Reports = () => {
     return acc;
   }, []);
 
-  // ✅ Bar Chart (Monthly totals)
   const barData = Array.from({ length: 12 }, (_, i) => {
     const total = filteredTransactions
       .filter((t) => new Date(t.date).getMonth() === i)
@@ -87,15 +82,14 @@ const Reports = () => {
 
   return (
    
-      <div className="min-h-screen p-6 bg-gray-300">
+      <div className="min-h-screen p-6 text-black bg-gray-300">
         <title>FinEase - Reports</title>
         <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">
           Reports 📊
         </h2>
 
-        {/* ✅ Filters */}
         <div className="flex gap-4 mb-6 justify-center">
-          {/* Month Filter */}
+
           <select
             className="p-2 rounded-lg"
             value={monthFilter}
@@ -109,7 +103,7 @@ const Reports = () => {
             ))}
           </select>
 
-          {/* Category Filter */}
+      
           <select
             className="p-2 rounded-lg"
             value={categoryFilter}
@@ -124,9 +118,9 @@ const Reports = () => {
           </select>
         </div>
 
-        {/* ✅ Charts Section */}
+   
         <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
-          {/* ✅ Pie Chart */}
+   
           <div className="bg-white p-4 rounded-lg shadow-lg">
             <h3 className="text-xl font-semibold mb-2 text-center">
               Category-wise Spending
@@ -151,13 +145,12 @@ const Reports = () => {
             </PieChart>
           </div>
 
-          {/* ✅ Bar Chart */}
           <div className="bg-white p-4 rounded-lg shadow-lg">
             <h3 className="text-xl font-semibold mb-2 text-center">
               Monthly Totals
             </h3>
 
-            <BarChart width={500} height={300} data={barData}>
+            <BarChart className="" width={400} height={300} data={barData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
               <YAxis />

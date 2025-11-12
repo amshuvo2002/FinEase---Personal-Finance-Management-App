@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import PrivateRoute from "../PrivetRoute/PrivateRoute";
+
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -8,11 +8,10 @@ const DetailsPage = () => {
   const [transaction, setTransaction] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Fetch details
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/transactions/${id}`);
+        const res = await fetch(`https://surver-part.vercel.app/transactions/${id}`);
         const data = await res.json();
         setTransaction(data);
       } catch (error) {
@@ -27,21 +26,21 @@ const DetailsPage = () => {
 
   if (loading) {
     return (
-      <PrivateRoute>
+      
         <div className="min-h-screen flex justify-center items-center text-xl font-semibold">
           Loading details...
         </div>
-      </PrivateRoute>
+      
     );
   }
 
   if (!transaction) {
     return (
-      <PrivateRoute>
+     
         <div className="min-h-screen flex justify-center items-center text-xl font-semibold">
           No transaction found!
         </div>
-      </PrivateRoute>
+     
     );
   }
 
@@ -87,7 +86,7 @@ const DetailsPage = () => {
             </p>
           </div>
 
-          {/* Back Button */}
+        
           <div className="mt-6 text-center">
             <button
               onClick={() => navigate(-1)}

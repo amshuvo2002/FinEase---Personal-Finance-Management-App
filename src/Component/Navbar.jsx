@@ -54,7 +54,7 @@ const Navbar = () => {
           </div>
 
          
-          <div className="flex ml-15 md:ml-0 justify-center gap-3">
+          <div className="flex ml-5 md:ml-0 justify-center gap-2">
             <img className="w-12 h-12 rounded-full" src={Logo} alt="" />
             <h1 className="font-bold text-4xl ">Fin<span className="text-gray-700">Ease</span></h1>
           </div>

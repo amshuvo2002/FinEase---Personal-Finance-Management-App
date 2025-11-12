@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { Authcontext } from "../Provider/Authprovider";
-import PrivateRoute from "../PrivetRoute/PrivateRoute";
 import Swal from "sweetalert2";
 
 const UpdateTransaction = () => {
@@ -16,17 +15,17 @@ const UpdateTransaction = () => {
   const [date, setDate] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // ✅ Fetch existing transaction
+ 
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/transactions/${id}`);
+        const res = await fetch(`https://surver-part.vercel.app/transactions/${id}`);
         const data = await res.json();
         setType(data.type);
         setCategory(data.category);
         setAmount(data.amount);
         setDescription(data.description || "");
-        setDate(data.date.split("T")[0]); // format for input type="date"
+        setDate(data.date.split("T")[0]); 
       } catch (error) {
         console.error("Error fetching transaction:", error);
       } finally {
@@ -36,7 +35,7 @@ const UpdateTransaction = () => {
     fetchTransaction();
   }, [id]);
 
-  // ✅ Handle update
+
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -60,7 +59,7 @@ const UpdateTransaction = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/transactions/${id}`, {
+      const res = await fetch(`https://surver-part.vercel.app/transactions/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedTransaction),
@@ -74,7 +73,7 @@ const UpdateTransaction = () => {
           title: "Transaction Updated",
           text: "Your transaction has been updated successfully!",
         });
-        navigate(`/My-Transaction`); // redirect to details page
+        navigate(`/My-Transaction`); 
       } else {
         Swal.fire({
           icon: "info",
@@ -111,7 +110,7 @@ const UpdateTransaction = () => {
           </h2>
 
           <form className="space-y-4" onSubmit={handleUpdate}>
-            {/* Type */}
+            
             <div>
               <label className="block font-semibold mb-1">Type</label>
               <select
@@ -124,7 +123,7 @@ const UpdateTransaction = () => {
               </select>
             </div>
 
-            {/* Category */}
+           
             <div>
               <label className="block font-semibold mb-1">Category</label>
               <input
@@ -137,7 +136,7 @@ const UpdateTransaction = () => {
               />
             </div>
 
-            {/* Amount */}
+           
             <div>
               <label className="block font-semibold mb-1">Amount</label>
               <input
@@ -149,7 +148,7 @@ const UpdateTransaction = () => {
               />
             </div>
 
-            {/* Description */}
+            
             <div>
               <label className="block font-semibold mb-1">Description</label>
               <textarea
@@ -160,7 +159,7 @@ const UpdateTransaction = () => {
               ></textarea>
             </div>
 
-            {/* Date */}
+        
             <div>
               <label className="block font-semibold mb-1">Date</label>
               <input

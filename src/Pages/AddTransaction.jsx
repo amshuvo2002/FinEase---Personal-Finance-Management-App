@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
-import PrivateRoute from "../PrivetRoute/PrivateRoute";
 import Swal from "sweetalert2";
 
 const AddTransaction = () => {
@@ -35,7 +34,7 @@ const AddTransaction = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/transactions", {
+      const response = await fetch("https://surver-part.vercel.app/transactions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(transactionData),
@@ -47,7 +46,7 @@ const AddTransaction = () => {
           title: "Transaction Added",
           text: "Your transaction has been saved successfully!",
         });
-        // Clear form
+       
         setCategory("");
         setAmount("");
         setDescription("");
@@ -69,13 +68,13 @@ const AddTransaction = () => {
     
       <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
            <title>FinEase-Add Transaction</title>
-        <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg">
+        <div className="bg-white text-black p-8 rounded-xl shadow-xl w-full max-w-lg">
           <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">
             Add Transaction 💰
           </h2>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
-            {/* Type */}
+           
             <div>
               <label className="block font-semibold mb-1">Type</label>
               <select
@@ -88,7 +87,7 @@ const AddTransaction = () => {
               </select>
             </div>
 
-            {/* Category */}
+           
             <div>
               <label className="block font-semibold mb-1">Category</label>
               <input
@@ -101,7 +100,7 @@ const AddTransaction = () => {
               />
             </div>
 
-            {/* Amount */}
+         
             <div>
               <label className="block font-semibold mb-1">Amount</label>
               <input
@@ -113,7 +112,7 @@ const AddTransaction = () => {
               />
             </div>
 
-            {/* Description */}
+            
             <div>
               <label className="block font-semibold mb-1">Description</label>
               <textarea
@@ -124,7 +123,7 @@ const AddTransaction = () => {
               ></textarea>
             </div>
 
-            {/* Date */}
+         
             <div>
               <label className="block font-semibold mb-1">Date</label>
               <input
@@ -136,7 +135,7 @@ const AddTransaction = () => {
               />
             </div>
 
-            {/* User Email (Read-only) */}
+           
             <div>
               <label className="block font-semibold mb-1">User Email</label>
               <input
@@ -147,7 +146,7 @@ const AddTransaction = () => {
               />
             </div>
 
-            {/* User Name (Read-only) */}
+           
             <div>
               <label className="block font-semibold mb-1">User Name</label>
               <input

@@ -3,7 +3,7 @@ import { Authcontext } from "../Provider/Authprovider";
 import { auth } from "../Firebase/firebase.config";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
-import PrivateRoute from "../PrivetRoute/PrivateRoute";
+
 
 const MyProfile = () => {
   const { user, setuser } = useContext(Authcontext);
@@ -33,7 +33,7 @@ const MyProfile = () => {
   };
 
   return (
-    <PrivateRoute>
+  
       <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
         <title>FinEase-My Profile</title>
         <div className="bg-white text-black p-8 rounded-xl shadow-xl w-full max-w-md">
@@ -91,7 +91,7 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
-    </PrivateRoute>
+   
   );
 };
 
