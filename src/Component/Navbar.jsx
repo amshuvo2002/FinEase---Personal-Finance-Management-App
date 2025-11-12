@@ -87,13 +87,13 @@ const Navbar = () => {
               />
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-12 w-48 text-black bg-white shadow-lg rounded-lg p-4 text-left z-10">
+                <div className="absolute right-0 mt-12 w-55 text-black bg-white shadow-lg rounded-lg p-2 text-left z-10">
                   <p className="font-semibold">{user.displayName || "User"}</p>
                   <p className="text-sm text-gray-500">{user.email}</p>
 
                   <button
                     onClick={handleLogout}
-                    className="mt-3 w-full bg-gray-300 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-400"
+                    className="mt-3 w-full bg-gray-300 py-2 flex items-center justify-center gap-2 hover:bg-gray-400"
                   >
                     <FiLogOut /> Logout
                   </button>
