@@ -44,7 +44,7 @@ const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
               </svg>
             </div>
-            <ul tabIndex="-1" className="menu menu-sm dropdown-content bg-base-100 z-1 mt-3 w-52 p-2 shadow">
+            <ul tabIndex="-1" className="menu menu-sm bg-white dropdown-content  z-1 mt-3 w-52 p-2 shadow">
               <li><NavLink to="/" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Home</NavLink></li>
               <li><NavLink to="Add-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Add Transaction</NavLink></li>
               <li><NavLink to="My-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Transactions</NavLink></li>
