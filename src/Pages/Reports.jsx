@@ -12,7 +12,7 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import Loader from "../Component/Loader"; // Loader import করা হলো
+import Loader from "../Component/Loader";
 
 const Reports = () => {
   const { user } = useContext(Authcontext);
@@ -20,7 +20,7 @@ const Reports = () => {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [monthFilter, setMonthFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
-  const [loading, setLoading] = useState(true); // loading state যোগ করা হলো
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -85,7 +85,7 @@ const Reports = () => {
     "#FF6384",
   ];
 
-  // 🔹 Loading Condition
+ 
   if (loading) {
     return <Loader />;
   }

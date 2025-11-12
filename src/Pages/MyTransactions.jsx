@@ -2,27 +2,42 @@ import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import Loader from "../Component/Loader"; // Loader import
+import Loader from "../Component/Loader"; 
 
 const MyTransactions = () => {
   const { user } = useContext(Authcontext);
   const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(true); // loading state
+  const [loading, setLoading] = useState(true);
+  const [sortField, setSortField] = useState("date"); 
+  const [sortOrder, setSortOrder] = useState("desc"); 
   const navigate = useNavigate();
 
-  // ✅ Fetch Transactions
+  
   const fetchTransactions = async () => {
     try {
-      setLoading(true); // start loader
+      setLoading(true); 
       const res = await fetch(
         `https://surver-part.vercel.app/transactions?email=${user.email}`
       );
       const data = await res.json();
-      setTransactions(data);
+
+    
+      const sortedData = data.sort((a, b) => {
+        if (sortField === "amount") {
+          return sortOrder === "asc" ? a.amount - b.amount : b.amount - a.amount;
+        } else if (sortField === "date") {
+          return sortOrder === "asc"
+            ? new Date(a.date) - new Date(b.date)
+            : new Date(b.date) - new Date(a.date);
+        }
+        return 0;
+      });
+
+      setTransactions(sortedData);
     } catch (error) {
       console.error("Failed to fetch transactions:", error);
     } finally {
-      setLoading(false); // hide loader
+      setLoading(false);
     }
   };
 
@@ -30,7 +45,7 @@ const MyTransactions = () => {
     if (user?.email) {
       fetchTransactions();
     }
-  }, [user]);
+  }, [user, sortField, sortOrder]);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -74,7 +89,17 @@ const MyTransactions = () => {
     navigate(`/transaction-details/${id}`);
   };
 
-  if (loading) return <Loader />; // show loader until data is loaded
+ 
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortOrder("desc");
+    }
+  };
+
+  if (loading) return <Loader />; 
 
   return (
     <div className="min-h-screen p-6 bg-gray-300">
@@ -83,9 +108,25 @@ const MyTransactions = () => {
         My Transactions 📝
       </h2>
 
+    
+      <div className="flex gap-2 mb-4">
+        <button
+          className="btn bg-gray-100 border-2 border-gray-400 text-gray-800 px-3 py-1"
+          onClick={() => handleSort("date")}
+        >
+          Sort by Date {sortField === "date" ? (sortOrder === "asc" ? "↑" : "↓") : ""}
+        </button>
+        <button
+          className="btn bg-gray-100 border-2 border-gray-400 text-gray-800 px-3 py-1"
+          onClick={() => handleSort("amount")}
+        >
+          Sort by Amount {sortField === "amount" ? (sortOrder === "asc" ? "↑" : "↓") : ""}
+        </button>
+      </div>
+
       <div className="overflow-x-auto">
-        <table className="min-w-full  text-black bg-white shadow-lg">
-          <thead className="bg-gray-200">
+        <table className="min-w-full border-2 border-gray-400  text-black bg-white shadow-lg">
+          <thead className="bg-gray-200 border-2 border-gray-400 ">
             <tr>
               <th className="py-2 px-4">Type</th>
               <th className="py-2 px-4">Category</th>

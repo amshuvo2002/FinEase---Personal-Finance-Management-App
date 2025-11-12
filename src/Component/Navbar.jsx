@@ -4,6 +4,8 @@ import { Authcontext } from "../Provider/Authprovider";
 import Logo from "../assets/logo.jpg";
 import { FiLogIn, FiLogOut, FiChevronDown } from "react-icons/fi";
 import Swal from "sweetalert2";
+import ThemeToggle from "./ThemeToggle";
+
 
 const Navbar = () => {
   const { user, setuser } = useContext(Authcontext);
@@ -23,7 +25,6 @@ const Navbar = () => {
     });
   };
 
-  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -40,43 +41,157 @@ const Navbar = () => {
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
               </svg>
             </div>
-            <ul tabIndex="-1" className="menu menu-sm bg-white dropdown-content  z-1 mt-3 w-52 p-2 shadow">
-              <li><NavLink to="/" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Home</NavLink></li>
-              <li><NavLink to="Add-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Add Transaction</NavLink></li>
-              <li><NavLink to="My-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Transactions</NavLink></li>
-              <li><NavLink to="Reports" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Reports</NavLink></li>
-              <li><NavLink to="My-Profile" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Profile</NavLink></li>
+            <ul
+              tabIndex="-1"
+              className="menu menu-sm bg-white dropdown-content  z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "underline underline-offset-4 font-semibold" : ""
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="Add-Transaction"
+                  className={({ isActive }) =>
+                    isActive ? "underline underline-offset-4 font-semibold" : ""
+                  }
+                >
+                  Add Transaction
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="My-Transaction"
+                  className={({ isActive }) =>
+                    isActive ? "underline underline-offset-4 font-semibold" : ""
+                  }
+                >
+                  My Transactions
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="Reports"
+                  className={({ isActive }) =>
+                    isActive ? "underline underline-offset-4 font-semibold" : ""
+                  }
+                >
+                  Reports
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="My-Profile"
+                  className={({ isActive }) =>
+                    isActive ? "underline underline-offset-4 font-semibold" : ""
+                  }
+                >
+                  My Profile
+                </NavLink>
+              </li>
             </ul>
           </div>
 
-         
           <div className="flex ml-5 md:ml-0 justify-center gap-2">
             <img className="w-12 h-12 rounded-full" src={Logo} alt="" />
-            <h1 className="font-bold text-4xl ">Fin<span className="text-gray-700">Ease</span></h1>
+            <h1 className="font-bold text-4xl ">
+              Fin<span className="text-gray-700">Ease</span>
+            </h1>
           </div>
         </div>
 
-       
         <div className="navbar-center hidden lg:flex">
           <ul className="gap-5 menu-horizontal px-1">
-            <li class="text-black hover:text-gray-700" ><NavLink to="/" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Home</NavLink></li>
-            <li class="text-black hover:text-gray-700"><NavLink to="Add-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Add Transaction</NavLink></li>
-            <li class="text-black hover:text-gray-700" ><NavLink to="My-Transaction" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Transactions</NavLink></li>
-            <li class="text-black hover:text-gray-700" ><NavLink to="Reports" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>Reports</NavLink></li>
-             <li class="text-black hover:text-gray-700" ><NavLink to="My-Profile" className={({ isActive }) => isActive ? "underline underline-offset-4 font-semibold" : ""}>My Profile</NavLink></li>
+            <li class="text-black hover:text-gray-700">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "underline underline-offset-4 font-semibold" : ""
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li class="text-black hover:text-gray-700">
+              <NavLink
+                to="Add-Transaction"
+                className={({ isActive }) =>
+                  isActive ? "underline underline-offset-4 font-semibold" : ""
+                }
+              >
+                Add Transaction
+              </NavLink>
+            </li>
+            <li class="text-black hover:text-gray-700">
+              <NavLink
+                to="My-Transaction"
+                className={({ isActive }) =>
+                  isActive ? "underline underline-offset-4 font-semibold" : ""
+                }
+              >
+                My Transactions
+              </NavLink>
+            </li>
+            <li class="text-black hover:text-gray-700">
+              <NavLink
+                to="Reports"
+                className={({ isActive }) =>
+                  isActive ? "underline underline-offset-4 font-semibold" : ""
+                }
+              >
+                Reports
+              </NavLink>
+            </li>
+            <li class="text-black hover:text-gray-700">
+              <NavLink
+                to="My-Profile"
+                className={({ isActive }) =>
+                  isActive ? "underline underline-offset-4 font-semibold" : ""
+                }
+              >
+                My Profile
+              </NavLink>
+            </li>
           </ul>
         </div>
 
-    
+        
+
+        
+
         <div className="navbar-end relative" ref={dropdownRef}>
+          <div className="mr-5">
+          <ThemeToggle></ThemeToggle>
+        </div>
+          
           {user ? (
             <div className="flex items-center gap-2 relative">
               <img
-                src={user?.photoURL || "https://i.ibb.co/2kMHDjv/default-avatar.png"}
+                src={
+                  user?.photoURL ||
+                  "https://i.ibb.co/2kMHDjv/default-avatar.png"
+                }
                 alt="User"
                 className="w-10 h-10 rounded-full cursor-pointer"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -85,6 +200,8 @@ const Navbar = () => {
                 className="cursor-pointer"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               />
+
+              
 
               {dropdownOpen && (
                 <div className="absolute right-0 mt-12 w-55 text-black bg-white shadow-lg rounded-lg p-2 text-left z-10">

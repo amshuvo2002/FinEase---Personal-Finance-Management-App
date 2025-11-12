@@ -3,20 +3,20 @@ import { Authcontext } from "../Provider/Authprovider";
 import { auth } from "../Firebase/firebase.config";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
-import Loader from "../Component/Loader"; // ✅ Loader import করা হলো
+import Loader from "../Component/Loader"; 
 
 const MyProfile = () => {
   const { user, setuser } = useContext(Authcontext);
   const [name, setName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
-  const [loading, setLoading] = useState(true); // ✅ loading state যোগ করা হলো
+  const [loading, setLoading] = useState(true); 
 
-  // user load হলে state সেট করা
+  
   useEffect(() => {
     if (user) {
       setName(user.displayName || "");
       setPhotoURL(user.photoURL || "");
-      setLoading(false); // ✅ user আসলেই loading বন্ধ
+      setLoading(false);
     }
   }, [user]);
 
@@ -42,7 +42,7 @@ const MyProfile = () => {
       });
   };
 
-  // ✅ Loader দেখানো হচ্ছে
+  
   if (loading) {
     return <Loader />;
   }
@@ -50,7 +50,7 @@ const MyProfile = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
       <title>FinEase - My Profile</title>
-      <div className="bg-white text-black p-8 shadow-xl w-full max-w-md">
+      <div className="bg-white  text-black p-8 shadow-xl w-full max-w-md">
         <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">
           My Profile 📝
         </h2>

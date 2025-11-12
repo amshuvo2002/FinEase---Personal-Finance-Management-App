@@ -25,7 +25,6 @@ const Home = () => {
     { image: pic3, title: "Financial Freedom Starts Today 🚀", subtitle: "Begin your journey to financial success now." },
   ];
 
- 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -33,9 +32,11 @@ const Home = () => {
     return () => clearInterval(timer);
   }, []);
 
-
   const fetchData = async () => {
-    if (!user?.email) return;
+    if (!user?.email) {
+      setLoading(false); 
+      return;
+    }
 
     try {
       const res = await fetch(`https://surver-part.vercel.app/transactions?email=${user.email}`);
@@ -45,7 +46,7 @@ const Home = () => {
     } catch (err) {
       console.error(err);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -67,7 +68,6 @@ const Home = () => {
     fetchData();
   }, [user]);
 
-  
   if (loading) {
     return <Loader />;
   }
@@ -77,7 +77,12 @@ const Home = () => {
       <section className="relative border-2 border-gray-300 text-center overflow-hidden shadow-2xl">
         <div className="relative w-full h-[65vh]">
           {slides.map((slide, index) => (
-            <div key={index} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"}`}>
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
+            >
               <img src={slide.image} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center">
                 <h1 className="md:text-5xl text-3xl font-bold mb-4 text-white drop-shadow-lg">{slide.title}</h1>
@@ -91,7 +96,9 @@ const Home = () => {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? "bg-white scale-125" : "bg-gray-400"}`}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === currentSlide ? "bg-white scale-125" : "bg-gray-400"
+              }`}
             ></button>
           ))}
         </div>
@@ -115,7 +122,6 @@ const Home = () => {
         </div>
       </section>
 
-
       <section className="bg-green-50 py-16 border-4 border-gray-400 px-4 mt-8 shadow-md">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-10">
           <div>
@@ -133,7 +139,6 @@ const Home = () => {
         </div>
       </section>
 
-     
       <section className="bg-green-50 border-4 border-gray-400 py-16 px-4 mt-8 shadow-md">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-10">
           <div className="flex justify-center order-2 md:order-1">

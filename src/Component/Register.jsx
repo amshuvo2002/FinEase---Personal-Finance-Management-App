@@ -58,6 +58,7 @@ const Register = () => {
         });
       });
   };
+  
 
   const handleGoogleRegister = () => {
     signInWithPopup(auth, googleProvider)

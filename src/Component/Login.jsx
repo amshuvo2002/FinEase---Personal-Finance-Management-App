@@ -4,17 +4,18 @@ import { Authcontext } from "../Provider/Authprovider";
 import { auth, googleProvider } from "../Firebase/firebase.config";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; 
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { setuser } = useContext(Authcontext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from || "/";
-
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -80,14 +81,22 @@ const Login = () => {
             required
           />
 
-          <input
-            type="password"
-            placeholder="Enter Password"
-            className="w-full px-4 py-2 border rounded-lg"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="relative"> 
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter Password"
+              className="w-full px-4 py-2 border rounded-lg"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span
+              className="absolute right-3 top-2.5 cursor-pointer text-gray-600"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <AiFillEye size={20} /> : <AiFillEyeInvisible size={20} />}
+            </span>
+          </div>
 
           <button
             type="submit"
