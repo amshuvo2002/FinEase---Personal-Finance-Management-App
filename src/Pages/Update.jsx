@@ -104,7 +104,7 @@ const UpdateTransaction = () => {
    
       <div className="min-h-screen p-6 bg-gray-300 flex justify-center">
          <title>FinEase - Updates</title>
-        <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-lg">
+        <div className="bg-white p-8 shadow-xl w-full max-w-lg">
           <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">
             Update Transaction ✏️
           </h2>

@@ -36,18 +36,18 @@ const MyProfile = () => {
   
       <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
         <title>FinEase-My Profile</title>
-        <div className="bg-white text-black p-8 rounded-xl shadow-xl w-full max-w-md">
+        <div className="bg-white text-black p-8 shadow-xl w-full max-w-md">
           <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">
             My Profile 📝
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-4 ">
             {photoURL && (
               <div className="flex justify-center">
                 <img
                   src={photoURL}
                   alt="Profile"
-                  className="w-24 h-24 rounded-full mt-2"
+                  className="w-24 h-24 border-2 border-gray-600 rounded-full mt-2"
                 />
               </div>
             )}

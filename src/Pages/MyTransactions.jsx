@@ -82,7 +82,7 @@ const MyTransactions = () => {
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="min-w-full  text-black bg-white shadow-lg rounded-lg">
+          <table className="min-w-full  text-black bg-white shadow-lg">
             <thead className="bg-gray-200">
               <tr>
                 <th className="py-2 px-4">Type</th>

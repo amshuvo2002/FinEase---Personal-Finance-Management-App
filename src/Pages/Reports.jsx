@@ -91,7 +91,7 @@ const Reports = () => {
         <div className="flex gap-4 mb-6 justify-center">
 
           <select
-            className="p-2 rounded-lg"
+            className="p-2 "
             value={monthFilter}
             onChange={(e) => setMonthFilter(e.target.value)}
           >
