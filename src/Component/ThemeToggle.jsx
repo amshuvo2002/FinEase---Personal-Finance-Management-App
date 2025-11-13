@@ -14,7 +14,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <label className="flex items-center bg-gray-100 rounded-xl gap-2 cursor-pointer ml-15">
+    <label className="flex items-center bg-gray-100 rounded-xl gap-2 cursor-pointer ml-10">
       <input
         type="checkbox"
         className="toggle theme-controller"
