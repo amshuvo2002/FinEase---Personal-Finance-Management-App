@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import ThemeToggle from "./ThemeToggle";
 
 
+
+
 const Navbar = () => {
   const { user, setuser } = useContext(Authcontext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -177,13 +179,13 @@ const Navbar = () => {
         </div>
 
         
-
+     <div>
+      <ThemeToggle></ThemeToggle>
+     </div>
         
 
         <div className="navbar-end relative" ref={dropdownRef}>
-          <div className="mr-5">
-          <ThemeToggle></ThemeToggle>
-        </div>
+        
           
           {user ? (
             <div className="flex items-center gap-2 relative">

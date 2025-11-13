@@ -66,16 +66,16 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen text-black flex items-center justify-center bg-gray-300 p-4">
+    <div className="min-h-screen text-black flex items-center justify-center p-4">
          <title>FinEase-Login</title>
-      <div className="bg-white p-8 shadow-xl w-full max-w-md">
-        <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">Login 📝</h2>
+      <div className="bg-gray-300 p-8 border-2 border-gray-400 shadow-xl w-full max-w-md">
+        <h2 className="text-4xl font-bold text-gray-700 text-center mb-6">Login 📝</h2>
 
         <form className="space-y-4" onSubmit={handleLogin}>
           <input
             type="email"
             placeholder="Enter Email"
-            className="w-full px-4 py-2 border rounded-lg"
+            className="w-full bg-white px-4 py-2 border rounded-lg"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -85,7 +85,7 @@ const Login = () => {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter Password"
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full bg-white px-4 py-2 border rounded-lg"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -108,7 +108,7 @@ const Login = () => {
 
         <button
           onClick={handleGoogleLogin}
-          className="btn w-full mt-5 bg-white hover:bg-gray-300 text-black border-black flex items-center justify-center gap-2"
+          className="btn w-full mt-5 bg-white hover:bg-gray-400 text-black border-black flex items-center justify-center gap-2"
         >
           <FcGoogle /> Google Login
         </button>

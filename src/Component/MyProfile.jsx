@@ -48,10 +48,10 @@ const MyProfile = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <title>FinEase - My Profile</title>
-      <div className="bg-white  text-black p-8 shadow-xl w-full max-w-md">
-        <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">
+      <div className="bg-gray-200 border-2 border-gray-400  text-black p-8 shadow-xl w-full max-w-md">
+        <h2 className="text-4xl font-bold text-gray-700 text-center mb-6">
           My Profile 📝
         </h2>
 
@@ -61,7 +61,7 @@ const MyProfile = () => {
               <img
                 src={photoURL}
                 alt="Profile"
-                className="w-24 h-24 border-2 border-gray-600 rounded-full mt-2"
+                className="w-24 bg-white h-24 border-2 border-gray-600 rounded-full mt-2"
               />
             </div>
           )}
@@ -70,7 +70,7 @@ const MyProfile = () => {
             <label className="block font-semibold mb-1">Name</label>
             <input
               type="text"
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full bg-white px-4 py-2 border rounded-lg"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -80,7 +80,7 @@ const MyProfile = () => {
             <label className="block font-semibold mb-1">Photo URL</label>
             <input
               type="text"
-              className="w-full px-4 py-2 border rounded-lg"
+              className="w-full bg-white px-4 py-2 border rounded-lg"
               value={photoURL}
               onChange={(e) => setPhotoURL(e.target.value)}
             />
@@ -90,7 +90,7 @@ const MyProfile = () => {
             <label className="block font-semibold mb-1">Email</label>
             <input
               type="email"
-              className="w-full px-4 py-2 border rounded-lg bg-gray-100"
+              className="w-full px-4 bg-white py-2 border rounded-lg"
               value={user?.email}
               disabled
             />

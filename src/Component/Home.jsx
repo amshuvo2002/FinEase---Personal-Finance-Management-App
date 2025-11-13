@@ -73,7 +73,7 @@ const Home = () => {
   }
 
   return (
-    <div className="min-h-screen p-5 bg-gray-300">
+    <div className="min-h-screen p-5">
       <section className="relative border-2 border-gray-300 text-center overflow-hidden shadow-2xl">
         <div className="relative w-full h-[65vh]">
           {slides.map((slide, index) => (
@@ -104,25 +104,25 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 px-4 max-w-6xl mx-auto">
-        <h2 className="text-4xl p-3 shadow-xl bg-blue-100 font-bold text-gray-800 mb-8 text-center">Overview 🔎</h2>
+      <section className="py-16 px-4 max-w-6xl bg-gray-300 border-4 border-gray-400 mt-10 mx-auto">
+        <h2 className="text-4xl p-3 font-bold text-gray-900 mb-8 text-center">Overview 🔎</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-gray-50 border-2 border-gray-400 p-6 shadow-xl text-center hover:shadow-md transition">
-            <h3 className="text-gray-600 mb-2">Total Balance 💵</h3>
+            <h3 className="text-gray-700 font-bold mb-2">Total Balance 💵</h3>
             <p className="text-2xl text-black font-bold">${balance}</p>
           </div>
           <div className="bg-gray-50 border-2 border-gray-400 p-6 shadow-xl text-center hover:shadow-md transition">
-            <h3 className="text-gray-600 mb-2">Income 📈</h3>
+            <h3 className="text-gray-700 font-bold  mb-2">Income 📈</h3>
             <p className="text-2xl font-bold text-green-600">${income}</p>
           </div>
           <div className="bg-gray-50 border-2 border-gray-400 p-6 shadow-xl text-center hover:shadow-md transition">
-            <h3 className="text-gray-600 mb-2">Expense 📉</h3>
+            <h3 className="text-gray-700 font-bold  mb-2">Expense 📉</h3>
             <p className="text-2xl font-bold text-red-500">${expense}</p>
           </div>
         </div>
       </section>
 
-      <section className="bg-green-50 py-16 border-4 border-gray-400 px-4 mt-8 shadow-md">
+      <section className="bg-gray-300 py-16 border-4 border-gray-400 px-4 mt-8 shadow-md">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-10">
           <div>
             <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center md:text-left">Budgeting Tips 📝</h2>
@@ -139,7 +139,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-green-50 border-4 border-gray-400 py-16 px-4 mt-8 shadow-md">
+      <section className="bg-gray-300 border-4 border-gray-400 py-16 px-4 mt-8 shadow-md">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-10">
           <div className="flex justify-center order-2 md:order-1">
             <img className="w-[350px] md:w-[400px] shadow-md" src={pic5} alt="Financial Planning" />

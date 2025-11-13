@@ -16,6 +16,7 @@ import PrivateRoute from "./PrivetRoute/PrivateRoute.jsx";
 import MyProfile from "./Component/MyProfile.jsx";
 import DetailsPage from "./Pages/Detailspage.jsx";
 import UpdateTransaction from "./Pages/Update.jsx";
+import { ThemeProvider } from 'next-themes'
 
 const router = createBrowserRouter([
   {

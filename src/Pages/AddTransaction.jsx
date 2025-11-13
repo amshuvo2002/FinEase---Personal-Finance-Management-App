@@ -66,10 +66,10 @@ const AddTransaction = () => {
 
   return (
     
-      <div className="min-h-screen flex items-center justify-center bg-gray-300 p-4">
+      <div className="min-h-screen flex items-center justify-center  p-4">
            <title>FinEase-Add Transaction</title>
-        <div className="bg-white text-black p-8 shadow-xl w-full max-w-lg">
-          <h2 className="text-4xl font-bold text-gray-500 text-center mb-6">
+        <div className="bg-gray-200 border-2 border-gray-400 text-black p-8 shadow-xl w-full max-w-lg">
+          <h2 className="text-4xl font-bold text-gray-700 text-center mb-6">
             Add Transaction 💰
           </h2>
 
@@ -78,7 +78,7 @@ const AddTransaction = () => {
             <div>
               <label className="block font-semibold mb-1">Type</label>
               <select
-                className="w-full px-4 py-2 border rounded-lg"
+                className="w-full bg-white px-4 py-2 border rounded-lg"
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               >
@@ -92,7 +92,7 @@ const AddTransaction = () => {
               <label className="block font-semibold mb-1">Category</label>
               <input
                 type="text"
-                className="w-full px-4 py-2 border rounded-lg"
+                className="w-full bg-white px-4 py-2 border rounded-lg"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 placeholder="e.g. Salary, Food, Rent"
@@ -105,7 +105,7 @@ const AddTransaction = () => {
               <label className="block font-semibold mb-1">Amount</label>
               <input
                 type="number"
-                className="w-full px-4 py-2 border rounded-lg"
+                className="w-full bg-white px-4 py-2 border rounded-lg"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 required
@@ -116,7 +116,7 @@ const AddTransaction = () => {
             <div>
               <label className="block font-semibold mb-1">Description</label>
               <textarea
-                className="w-full px-4 py-2 border rounded-lg"
+                className="w-full bg-white px-4 py-2 border rounded-lg"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Optional"
@@ -128,7 +128,7 @@ const AddTransaction = () => {
               <label className="block font-semibold mb-1">Date</label>
               <input
                 type="date"
-                className="w-full px-4 py-2 border rounded-lg"
+                className="w-full bg-white px-4 py-2 border rounded-lg"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required

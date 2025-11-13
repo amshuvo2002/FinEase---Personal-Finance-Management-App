@@ -102,9 +102,9 @@ const MyTransactions = () => {
   if (loading) return <Loader />; 
 
   return (
-    <div className="min-h-screen p-6 bg-gray-300">
+    <div className="min-h-screen p-6 ">
       <title>FinEase-My Transaction</title>
-      <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">
+      <h2 className="text-4xl font-bold text-gray-400 mb-6 text-center">
         My Transactions 📝
       </h2>
 

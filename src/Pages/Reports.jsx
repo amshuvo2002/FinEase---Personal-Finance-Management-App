@@ -91,15 +91,15 @@ const Reports = () => {
   }
 
   return (
-    <div className="min-h-screen p-6 text-black bg-gray-300">
+    <div className="min-h-screen p-6 text-black">
       <title>FinEase - Reports</title>
-      <h2 className="text-4xl font-bold text-gray-500 mb-6 text-center">
+      <h2 className="text-4xl font-bold text-gray-400 mb-6 text-center">
         Reports 📊
       </h2>
 
       <div className="flex gap-4 mb-6 justify-center">
         <select
-          className="p-2"
+          className="p-2  bg-gray-100 rounded-lg border-2 border-gray-500 "
           value={monthFilter}
           onChange={(e) => setMonthFilter(e.target.value)}
         >
@@ -112,7 +112,7 @@ const Reports = () => {
         </select>
 
         <select
-          className="p-2 rounded-lg"
+          className="p-2  bg-gray-100  rounded-lg border-2 border-gray-500"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
         >
@@ -126,12 +126,12 @@ const Reports = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
-        <div className="bg-white p-4 rounded-lg shadow-lg">
+        <div className=" bg-gray-50 border-2 border-gray-600 p-4 rounded-lg shadow-lg">
           <h3 className="text-xl font-semibold mb-2 text-center">
             Category-wise Spending
           </h3>
 
-          <PieChart width={350} height={300}>
+          <PieChart width={320} height={300}>
             <Pie
               data={pieData}
               dataKey="value"
@@ -150,12 +150,12 @@ const Reports = () => {
           </PieChart>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow-lg">
+        <div className=" bg-gray-50 border-2 border-gray-600  p-4 rounded-lg shadow-lg">
           <h3 className="text-xl font-semibold mb-2 text-center">
             Monthly Totals
           </h3>
 
-          <BarChart width={350} height={300} data={barData}>
+          <BarChart width={320} height={300} data={barData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
             <YAxis />
